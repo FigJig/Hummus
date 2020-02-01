@@ -39,7 +39,10 @@ public class PlayerMovement : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		CalculateMovement();
+		if (!UIManager.MenuIsActive)
+		{
+			CalculateMovement();
+		}
 	}
 
 	void CalculateMovement()
