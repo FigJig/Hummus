@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/TileExample.unity
     guid: 508c529f23b882f498849cb8c6e50fc7
   - enabled: 1
-    path: Assets/Scenes/EnvironmentExample.unity
+    path: Assets/Scenes/LevelOne.unity
     guid: 28f1baa6aac110f418831c3e203cea72
   m_configObjects: {}
