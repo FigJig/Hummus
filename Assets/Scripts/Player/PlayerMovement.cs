@@ -51,16 +51,25 @@ public class PlayerMovement : MonoBehaviour
 	{
 		_rb = GetComponent<Rigidbody2D>();
 		_collider = GetComponent<Collider2D>();
+		_isJumping = false;
 	}
 
 	void FixedUpdate()
 	{
-		CalculateMovement();
+		if (!UIManager.MenuIsActive)
+		{
+			CalculateMovement();
+		}
 	}
 
 	void CalculateMovement()
 	{
 		float xInput = Input.GetAxisRaw("Horizontal");
+
+		if (JumpingAbovePlatform)
+		{
+			Debug.Log("jumping above platform");
+		}
 
 		Vector2 movementHoritzontal = Vector2.right * xInput;
 		_velocity = Vector2.zero;
@@ -78,7 +87,10 @@ public class PlayerMovement : MonoBehaviour
 
 		if (IsGrounded)
 		{
-			_yVelocity = 0f;
+			if (!JumpingAbovePlatform)
+			{
+				_yVelocity = 0;
+			}
 
 			if (Input.GetButtonDown("Jump"))
 			{
@@ -88,7 +100,6 @@ public class PlayerMovement : MonoBehaviour
 		else
 		{
 			_yVelocity -= 9.8f * Time.fixedDeltaTime;
-
 		}
 
 		DetermineState(xInput, IsGrounded);
@@ -136,22 +147,62 @@ public class PlayerMovement : MonoBehaviour
 		}
 	}
 
+	public bool JumpingAbovePlatform
+	{
+		get
+		{
+			Vector3 midPosition = transform.position;
+			midPosition.y = _collider.bounds.max.y - 0.3f;
+
+			Vector3 rightPosition = transform.position;
+			rightPosition.y = _collider.bounds.max.y - 0.3f;
+			rightPosition.x = _collider.bounds.max.x - _collider.bounds.size.x;
+
+			Vector3 leftPosition = transform.position;
+			leftPosition.y = _collider.bounds.max.y - 0.3f;
+			leftPosition.x = _collider.bounds.max.x;
+
+			float length = _isGroundedRayLength + 0.1f;
+
+			Debug.DrawRay(midPosition, Vector2.up * length, Color.green);
+			Debug.DrawRay(rightPosition, Vector2.up * length, Color.green);
+			Debug.DrawRay(leftPosition, Vector2.up * length, Color.green);
+
+			if (Physics2D.Raycast(midPosition, Vector2.up, length, layerMaskForGrounded.value))
+			{
+				return true;
+			}
+
+			if (Physics2D.Raycast(rightPosition, Vector2.up, length, layerMaskForGrounded.value))
+			{
+				return true;
+			}
+
+			if (Physics2D.Raycast(leftPosition, Vector2.up, length, layerMaskForGrounded.value))
+			{
+				return true;
+			}
+
+			return false;
+		}
+	}
+
 	public bool IsGrounded
 	{
 		get
 		{
 			Vector3 midPosition = transform.position;
-			midPosition.y = _collider.bounds.min.y + 0.1f;
+			midPosition.y = _collider.bounds.min.y + 0.05f;
 
 			Vector3 rightPosition = transform.position;
-			rightPosition.y = _collider.bounds.min.y + 0.1f;
+			rightPosition.y = _collider.bounds.min.y + 0.05f;
 			rightPosition.x = _collider.bounds.min.x + _collider.bounds.size.x;
 
 			Vector3 leftPosition = transform.position;
-			leftPosition.y = _collider.bounds.min.y + 0.1f;
+			leftPosition.y = _collider.bounds.min.y + 0.05f;
 			leftPosition.x = _collider.bounds.min.x;
 
-			float length = _isGroundedRayLength + 0.1f;
+			float length = _isGroundedRayLength + 0.05f;
 
 			Debug.DrawRay(midPosition, Vector2.down * length, Color.red);
 			Debug.DrawRay(rightPosition, Vector2.down * length, Color.red);
