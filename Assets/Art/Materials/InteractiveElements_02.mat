@@ -27,6 +27,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _OutlinedTexture:
+        m_Texture: {fileID: 2800000, guid: 44882186cc6b7014aa91c820e12d9eca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpriteTexture:
         m_Texture: {fileID: 2800000, guid: 44882186cc6b7014aa91c820e12d9eca, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -34,7 +38,7 @@ Material:
     m_Floats:
     - PixelSnap: 1
     - _AnimLerp: 1
-    - _FlashSpeed: 0
+    - _FlashSpeed: 8
     - _OutlineSwitch: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
