@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
 	public enum PlayerState
 	{
+		IdleLeft,
+		IdleRight,
 		MovingLeft,
 		MovingRight,
 		JumpingLeft,
@@ -104,6 +106,16 @@ public class PlayerMovement : MonoBehaviour
 			if (xInput < -0.1f)
 			{
 				playerState = PlayerState.MovingLeft;
+			}
+
+			if (xInput == 0 && playerState == PlayerState.MovingRight || playerState == PlayerState.JumpingRight)
+			{
+				playerState = PlayerState.IdleRight;
+			}
+
+			if (xInput == 0 && playerState == PlayerState.MovingLeft || playerState == PlayerState.JumpingLeft)
+			{
+				playerState = PlayerState.IdleLeft;
 			}
 		}
 	}
