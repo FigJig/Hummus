@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -50,6 +51,7 @@ public class UIManager : MonoBehaviour
 			if (Input.GetButtonDown("Cancel"))
 			{
 				Debug.Log("Pressed cancel");
+				SceneManager.LoadScene("SC_MainMenu");
 			}
 		}
 	}
