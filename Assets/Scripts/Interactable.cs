@@ -8,14 +8,10 @@ public class Interactable : MonoBehaviour
 	[SerializeField]
 	private EResourceType m_ResourceType;
 	[SerializeField]
-	private float m_ResourceRate = 1f;
+	private float m_ResourceValue = 1f;
+	
 	[SerializeField]
-	private float m_TotalInteractTime = 2f;
-
-	[Tooltip("0 - fully repaired, 1 - fully destructed")]
-	[Range(0, 1)]
-	[SerializeField]
-	private float m_StartInteractTime = 0f;
+	private EInteractType m_StartState = EInteractType.Destruct;
 
 	[SerializeField]
 	private EInteractType m_InteractType = EInteractType.None;
@@ -24,10 +20,9 @@ public class Interactable : MonoBehaviour
 	private int m_DestructId;
 	private int m_SpeedId;
 	private float m_NormalizedAnimTime;
-
-	public float CurrentInteractTime { get; private set; }
+	
 	public EResourceType ResourceType { get { return m_ResourceType; } }
-	public float ResourceRate { get { return m_ResourceRate; } }
+	public float ResourceValue { get { return m_ResourceValue; } }
 
 	void Start()
 	{
@@ -35,26 +30,33 @@ public class Interactable : MonoBehaviour
 		m_SpeedId = Animator.StringToHash("Speed");
 
 		m_Animator.enabled = true;
-		m_Animator.Play(0, 0, m_StartInteractTime);
+		if (m_StartState == EInteractType.Destruct)
+		{
+			m_Animator.Play(0, 0, 1f);
+		}
+		else if (m_StartState == EInteractType.Repair)
+		{
+			m_Animator.Play(0, 0, 0f);
+		}
 		StartCoroutine(_DisableAnimator());
-
-		CurrentInteractTime = m_StartInteractTime;
 	}
 
 	void Update()
 	{
 		if (m_InteractType == EInteractType.Destruct)
 		{
-			if (CurrentInteractTime < 1f)
+			if (m_Animator.GetAnimatorTransitionInfo(0).normalizedTime >= 1f)
 			{
-				CurrentInteractTime += Time.deltaTime / m_TotalInteractTime;
+				m_InteractType = EInteractType.None;
+				m_Animator.enabled = false;
 			}
 		}
 		else if (m_InteractType == EInteractType.Repair)
 		{
-			if (CurrentInteractTime > 0f)
+			if (m_Animator.GetAnimatorTransitionInfo(0).normalizedTime <= 0f)
 			{
-				CurrentInteractTime -= Time.deltaTime / m_TotalInteractTime;
+				m_InteractType = EInteractType.None;
+				m_Animator.enabled = false;
 			}
 		}
 	}

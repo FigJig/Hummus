@@ -54,21 +54,15 @@ public class PlayerInteract : MonoBehaviour
 		{
 			if (m_CurrentInteractType == EInteractType.Destruct)
 			{
-				if (m_CurrentInteractable.CurrentInteractTime < 1f)
-				{
-					m_PlayerResources.AddResource(m_CurrentInteractable.ResourceType, Time.deltaTime * m_CurrentInteractable.ResourceRate);
-				}
+				m_PlayerResources.AddResource(m_CurrentInteractable.ResourceType, m_CurrentInteractable.ResourceValue);
 			}
 			else if (m_CurrentInteractType == EInteractType.Repair)
 			{
-				if (m_CurrentInteractable.CurrentInteractTime > 0f)
-				{
-					m_PlayerResources.UseResource(m_CurrentInteractable.ResourceType, Time.deltaTime * m_CurrentInteractable.ResourceRate);
+				m_PlayerResources.UseResource(m_CurrentInteractable.ResourceType, Time.deltaTime * m_CurrentInteractable.ResourceValue);
 
-					if (m_PlayerResources.resources[(int)m_CurrentInteractable.ResourceType].Count <= 0f)
-					{
-						m_CurrentInteractable.StopRepair();
-					}
+				if (m_PlayerResources.resources[(int)m_CurrentInteractable.ResourceType].Count <= 0f)
+				{
+					m_CurrentInteractable.StopRepair();
 				}
 			}
 		}
@@ -112,7 +106,7 @@ public class PlayerInteract : MonoBehaviour
 		if (Input.GetMouseButtonDown(1))
 		{
 			m_CurrentInteractType = EInteractType.Repair;
-			
+
 			if (m_CurrentInteractable != null)
 			{
 				m_CurrentInteractable.StartRepair();
