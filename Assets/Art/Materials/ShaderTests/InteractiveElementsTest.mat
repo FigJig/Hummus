@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: InteractiveElementsTest
-  m_Shader: {fileID: 4800000, guid: 4fd84d926260ede4599b0e5da7521e71, type: 3}
+  m_Shader: {fileID: 4800000, guid: 75c2a83be6f764442a7cb4198740a68a, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA PIXELSNAP_ON _OUTLINESWITCH_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -64,7 +64,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpriteTexture:
-        m_Texture: {fileID: 2800000, guid: fdd700518d7d4844aa8840d2c9019996, type: 3}
+        m_Texture: {fileID: 2800000, guid: 119448290009f554eb771cd22f734cad, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture0:
@@ -81,14 +81,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - PixelSnap: 1
-    - _AnimLerp: 0.5
+    - _AnimLerp: 0
     - _AnimSpeed: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnableExternalAlpha: 0
-    - _FlashSpeed: 16.48
+    - _FlashSpeed: 2
     - _Float0: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -109,7 +109,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 1, g: 0.98480475, b: 0, a: 1}
+    - _OutlineColor: {r: 0, g: 1, b: 0.12409544, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SheetCoordinates: {r: 4, g: 4, b: 0, a: 0}
     - _Tint: {r: 0, g: 1, b: 0.009311438, a: 1}
