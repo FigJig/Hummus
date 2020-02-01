@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: InteractiveElements_02
+  m_Name: Tree_Repaired
   m_Shader: {fileID: 4800000, guid: bcc20d8633ee19144972ef3c1727d496, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA PIXELSNAP_ON
   m_LightmapFlags: 4
