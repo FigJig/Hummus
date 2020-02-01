@@ -7,6 +7,7 @@ public class PlayerDataModule : MonoBehaviour
 	public static PlayerDataModule Inst;
 
 	public PlayerMovement playerMovement;
+	public PlayerAnimator playerAnimator;
 
     void Awake()
     {

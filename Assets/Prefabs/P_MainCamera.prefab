@@ -98,4 +98,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraOffsetFromPlayer: {x: 0, y: 0.4, z: -10}
   smoothFollow: 1
-  smoothFollowSpeed: 7
+  smoothFollowSpeed: 6

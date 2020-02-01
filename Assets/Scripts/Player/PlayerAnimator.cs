@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
 {
+	public string idleLeftAnim;
+	public string idleRightAnim;
 	public string movingLeftAnim;
 	public string movingRightAnim;
 	public string jumpingLeftAnim;
@@ -22,7 +24,17 @@ public class PlayerAnimator : MonoBehaviour
 	{
 		switch(_player.playerMovement.playerState)
 		{
+			case PlayerMovement.PlayerState.IdleLeft:
+				break;
+			case PlayerMovement.PlayerState.IdleRight:
+				break;
+			case PlayerMovement.PlayerState.MovingLeft:
+				break;
+			case PlayerMovement.PlayerState.MovingRight:
+				break;
 			case PlayerMovement.PlayerState.JumpingLeft:
+				break;
+			case PlayerMovement.PlayerState.JumpingRight:
 				break;
 		}
 	}

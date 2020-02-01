@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 1920049361}
   - component: {fileID: 1920049363}
   - component: {fileID: 1920049362}
+  - component: {fileID: 4974172237243114056}
+  - component: {fileID: 8615256990790218853}
   m_Layer: 0
   m_Name: P_Player
   m_TagString: Player
@@ -71,16 +73,16 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.3, y: 0.3}
   m_EdgeRadius: 0
 --- !u!212 &1920049361
 SpriteRenderer:
@@ -120,7 +122,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 7ab366ff3befb3446b7e07c25d6aef43, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -144,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 1920049362}
+  playerAnimator: {fileID: 8615256990790218853}
 --- !u!114 &1920049362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,3 +165,41 @@ MonoBehaviour:
   layerMaskForGrounded:
     serializedVersion: 2
     m_Bits: 256
+  playerState: 0
+--- !u!95 &4974172237243114056
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7616229778538690617}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 94945192c51c73648824fbcbca78344b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8615256990790218853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7616229778538690617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f120d028fdf98045b4531dfeecf1c20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleLeftAnim: 
+  idleRightAnim: 
+  movingLeftAnim: 
+  movingRightAnim: 
+  jumpingLeftAnim: 
+  jumpingRightAnim: 
