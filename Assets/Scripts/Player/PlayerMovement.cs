@@ -20,6 +20,22 @@ public class PlayerMovement : MonoBehaviour
 	public LayerMask layerMaskForGrounded;
 
 	public PlayerState playerState;
+	public int LookDirection
+	{
+		get
+		{
+			switch (playerState)
+			{
+				case PlayerState.IdleLeft:
+				case PlayerState.JumpingLeft:
+				case PlayerState.MovingLeft:
+				{
+					return -1;
+				}
+			}
+			return 1;
+		}
+	}
 
 	private float _isGroundedRayLength = 0.05f;
 	private float _xMovement;
@@ -39,7 +55,10 @@ public class PlayerMovement : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		CalculateMovement();
+		if (!UIManager.MenuIsActive)
+		{
+			CalculateMovement();
+		}
 	}
 
 	void CalculateMovement()
