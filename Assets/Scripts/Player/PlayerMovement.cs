@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
 	public float acceleration;
 	public float jumpHeight;
 	public LayerMask layerMaskForGrounded;
+	public LayerMask layerMaskForPlatforms;
 
 	public PlayerState playerState;
 	public int LookDirection
@@ -152,14 +153,14 @@ public class PlayerMovement : MonoBehaviour
 		get
 		{
 			Vector3 midPosition = transform.position;
-			midPosition.y = _collider.bounds.max.y - 0.3f;
+			midPosition.y = _collider.bounds.max.y - 0.32f;
 
 			Vector3 rightPosition = transform.position;
-			rightPosition.y = _collider.bounds.max.y - 0.3f;
+			rightPosition.y = _collider.bounds.max.y - 0.32f;
 			rightPosition.x = _collider.bounds.max.x - _collider.bounds.size.x;
 
 			Vector3 leftPosition = transform.position;
-			leftPosition.y = _collider.bounds.max.y - 0.3f;
+			leftPosition.y = _collider.bounds.max.y - 0.32f;
 			leftPosition.x = _collider.bounds.max.x;
 
 			float length = _isGroundedRayLength + 0.1f;
@@ -168,17 +169,17 @@ public class PlayerMovement : MonoBehaviour
 			Debug.DrawRay(rightPosition, Vector2.up * length, Color.green);
 			Debug.DrawRay(leftPosition, Vector2.up * length, Color.green);
 
-			if (Physics2D.Raycast(midPosition, Vector2.up, length, layerMaskForGrounded.value))
+			if (Physics2D.Raycast(midPosition, Vector2.up, length, layerMaskForPlatforms.value))
 			{
 				return true;
 			}
 
-			if (Physics2D.Raycast(rightPosition, Vector2.up, length, layerMaskForGrounded.value))
+			if (Physics2D.Raycast(rightPosition, Vector2.up, length, layerMaskForPlatforms.value))
 			{
 				return true;
 			}
 
-			if (Physics2D.Raycast(leftPosition, Vector2.up, length, layerMaskForGrounded.value))
+			if (Physics2D.Raycast(leftPosition, Vector2.up, length, layerMaskForPlatforms.value))
 			{
 				return true;
 			}
@@ -192,14 +193,14 @@ public class PlayerMovement : MonoBehaviour
 		get
 		{
 			Vector3 midPosition = transform.position;
-			midPosition.y = _collider.bounds.min.y + 0.05f;
+			midPosition.y = _collider.bounds.min.y + 0.03f;
 
 			Vector3 rightPosition = transform.position;
-			rightPosition.y = _collider.bounds.min.y + 0.05f;
+			rightPosition.y = _collider.bounds.min.y + 0.03f;
 			rightPosition.x = _collider.bounds.min.x + _collider.bounds.size.x;
 
 			Vector3 leftPosition = transform.position;
-			leftPosition.y = _collider.bounds.min.y + 0.05f;
+			leftPosition.y = _collider.bounds.min.y + 0.03f;
 			leftPosition.x = _collider.bounds.min.x;
 
 			float length = _isGroundedRayLength + 0.05f;
