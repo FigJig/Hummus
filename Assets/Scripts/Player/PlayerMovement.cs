@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-	public enum Direction
+	public enum PlayerState
 	{
-		Left,
-		Right,
-		Jumping
+		MovingLeft,
+		MovingRight,
+		JumpingLeft,
+		JumpingRight
 	}
 
 	public float moveSpeed;
@@ -16,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
 	public float jumpHeight;
 	public LayerMask layerMaskForGrounded;
 
-	public Direction direction { get; private set; }
+	public PlayerState playerState;
 
 	private float _isGroundedRayLength = 0.05f;
 	private float _xMovement;
@@ -72,14 +73,39 @@ public class PlayerMovement : MonoBehaviour
 
 		}
 
-
+		DetermineState(xInput, IsGrounded);
 		_velocity.y = _yVelocity;
 		_rb.MovePosition(_rb.position + _velocity * Time.fixedDeltaTime);
 	}
 
-	void DetermineDirection()
+	void DetermineState(float xInput, bool isGrounded)
 	{
+		if (!isGrounded)
+		{
+			if (xInput > 0.1f)
+			{
+				playerState = PlayerState.JumpingRight;
+			}
 
+			if (xInput < -0.1f)
+			{
+				playerState = PlayerState.JumpingLeft;
+			}
+
+			return;
+		}
+		else
+		{
+			if (xInput > 0.1f)
+			{
+				playerState = PlayerState.MovingRight;
+			}
+
+			if (xInput < -0.1f)
+			{
+				playerState = PlayerState.MovingLeft;
+			}
+		}
 	}
 
 	public bool IsGrounded
