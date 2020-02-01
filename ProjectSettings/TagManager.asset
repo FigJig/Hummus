@@ -13,9 +13,15 @@ TagManager:
   - UI
   - 
   - 
+<<<<<<< HEAD
   - Floor
   - 
   - 
+=======
+  - Player
+  - Interactable
+  - Ground
+>>>>>>> master
   - 
   - 
   - 
