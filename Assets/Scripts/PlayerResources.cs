@@ -15,6 +15,7 @@ public class PlayerResources : MonoBehaviour
 	{
 		public string name;
 		public EResourceType resourceType;
+		public TMPro.TextMeshProUGUI countText;
 		public int max;
 
 		[SerializeField]
@@ -40,30 +41,33 @@ public class PlayerResources : MonoBehaviour
 				{
 					m_Count = value;
 				}
+				countText.text = ((int)(m_Count + 0.99f)).ToString();
 			}
 		}
 	}
-
-	[SerializeField]
-	private Resource[] m_Resources;
+	
+	public Resource[] resources;
 
 	void Start()
 	{
-
-	}
-
-	void Update()
-	{
-		
+		for (int i = 0; i < resources.Length; i++)
+		{
+			resources[i].countText.text = ((int)(resources[i].Count + 0.99f)).ToString();
+		}
 	}
 
 	public void AddResource(EResourceType resourceType, float amount)
 	{
-		m_Resources[(int)resourceType].Count += amount;
+		resources[(int)resourceType].Count += amount;
 	}
 
 	public void UseResource(EResourceType resourceType, float amount)
 	{
-		m_Resources[(int)resourceType].Count -= amount;
+		resources[(int)resourceType].Count -= amount;
+	}
+
+	public float GetResourceCount(EResourceType resourceType)
+	{
+		return resources[(int)resourceType].Count;
 	}
 }
