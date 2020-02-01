@@ -94,7 +94,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DissolveClamp: 0.13
     - _DissolveDelay: -0.3
-    - _DissolveValue: 0
+    - _DissolveValue: 1
     - _DstBlend: 0
     - _Float0: 0.2
     - _GlossMapScale: 1
@@ -104,6 +104,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _RoundValue: 12
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
