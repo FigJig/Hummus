@@ -20,6 +20,14 @@ public class PlayerMovement : MonoBehaviour
 	public LayerMask layerMaskForGrounded;
 	public LayerMask layerMaskForPlatforms;
 
+	[Header("Raycast Lengths")]
+	public float raycastUpLength;
+	public float raycastDownLength;
+
+	[Header("Raycast Positions")]
+	public float raycastUpPosOffset;
+	public float raycastDownPosOffset;
+
 	public PlayerState playerState;
 	public int LookDirection
 	{
@@ -46,12 +54,11 @@ public class PlayerMovement : MonoBehaviour
 
 	private Rigidbody2D _rb;
 	private Vector2 _velocity;
-	private Collider2D _collider;
+	public Collider2D collider;
 
 	void Start()
 	{
 		_rb = GetComponent<Rigidbody2D>();
-		_collider = GetComponent<Collider2D>();
 		_isJumping = false;
 	}
 
@@ -153,17 +160,17 @@ public class PlayerMovement : MonoBehaviour
 		get
 		{
 			Vector3 midPosition = transform.position;
-			midPosition.y = _collider.bounds.max.y - 0.32f;
+			midPosition.y = collider.bounds.max.y - raycastUpPosOffset;
 
 			Vector3 rightPosition = transform.position;
-			rightPosition.y = _collider.bounds.max.y - 0.32f;
-			rightPosition.x = _collider.bounds.max.x - _collider.bounds.size.x;
+			rightPosition.y = collider.bounds.max.y - raycastUpPosOffset;
+			rightPosition.x = collider.bounds.max.x - collider.bounds.size.x;
 
 			Vector3 leftPosition = transform.position;
-			leftPosition.y = _collider.bounds.max.y - 0.32f;
-			leftPosition.x = _collider.bounds.max.x;
+			leftPosition.y = collider.bounds.max.y - raycastUpPosOffset;
+			leftPosition.x = collider.bounds.max.x;
 
-			float length = _isGroundedRayLength + 0.1f;
+			float length = _isGroundedRayLength + raycastUpLength;
 
 			Debug.DrawRay(midPosition, Vector2.up * length, Color.green);
 			Debug.DrawRay(rightPosition, Vector2.up * length, Color.green);
@@ -193,17 +200,17 @@ public class PlayerMovement : MonoBehaviour
 		get
 		{
 			Vector3 midPosition = transform.position;
-			midPosition.y = _collider.bounds.min.y + 0.03f;
+			midPosition.y = collider.bounds.min.y + raycastDownPosOffset;
 
 			Vector3 rightPosition = transform.position;
-			rightPosition.y = _collider.bounds.min.y + 0.03f;
-			rightPosition.x = _collider.bounds.min.x + _collider.bounds.size.x;
+			rightPosition.y = collider.bounds.min.y + raycastDownPosOffset;
+			rightPosition.x = collider.bounds.min.x + collider.bounds.size.x;
 
 			Vector3 leftPosition = transform.position;
-			leftPosition.y = _collider.bounds.min.y + 0.03f;
-			leftPosition.x = _collider.bounds.min.x;
+			leftPosition.y = collider.bounds.min.y + raycastDownPosOffset;
+			leftPosition.x = collider.bounds.min.x;
 
-			float length = _isGroundedRayLength + 0.05f;
+			float length = _isGroundedRayLength + raycastDownLength;
 
 			Debug.DrawRay(midPosition, Vector2.down * length, Color.red);
 			Debug.DrawRay(rightPosition, Vector2.down * length, Color.red);
@@ -226,5 +233,42 @@ public class PlayerMovement : MonoBehaviour
 
 			return false;
 		}
+	}
+
+	public void OnDrawGizmos()
+	{
+		Vector3 midPositionDown = transform.position;
+		midPositionDown.y = collider.bounds.min.y + raycastDownPosOffset;
+
+		Vector3 rightPositionDown = transform.position;
+		rightPositionDown.y = collider.bounds.min.y + raycastDownPosOffset;
+		rightPositionDown.x = collider.bounds.min.x + collider.bounds.size.x;
+
+		Vector3 leftPositionDown = transform.position;
+		leftPositionDown.y = collider.bounds.min.y + raycastDownPosOffset;
+		leftPositionDown.x = collider.bounds.min.x;
+
+		float lengthDown = _isGroundedRayLength + raycastDownLength;
+
+		Debug.DrawRay(midPositionDown, Vector2.down * lengthDown, Color.red);
+		Debug.DrawRay(rightPositionDown, Vector2.down * lengthDown, Color.red);
+		Debug.DrawRay(leftPositionDown, Vector2.down * lengthDown, Color.red);
+
+		Vector3 midPositionUp = transform.position;
+		midPositionUp.y = collider.bounds.max.y - raycastUpPosOffset;
+
+		Vector3 rightPositionUp = transform.position;
+		rightPositionUp.y = collider.bounds.max.y - raycastUpPosOffset;
+		rightPositionUp.x = collider.bounds.max.x - collider.bounds.size.x;
+
+		Vector3 leftPositionUp = transform.position;
+		leftPositionUp.y = collider.bounds.max.y - raycastUpPosOffset;
+		leftPositionUp.x = collider.bounds.max.x;
+
+		float lengthUp = _isGroundedRayLength + raycastUpLength;
+
+		Debug.DrawRay(midPositionUp, Vector2.up * lengthUp, Color.green);
+		Debug.DrawRay(rightPositionUp, Vector2.up * lengthUp, Color.green);
+		Debug.DrawRay(leftPositionUp, Vector2.up * lengthUp, Color.green);
 	}
 }
