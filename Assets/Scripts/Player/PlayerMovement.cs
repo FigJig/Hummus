@@ -84,12 +84,12 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (!isGrounded)
 		{
-			if (xInput > 0.1f)
+			if (xInput > 0.1f || playerState == PlayerState.MovingRight || playerState == PlayerState.IdleRight)
 			{
 				playerState = PlayerState.JumpingRight;
 			}
 
-			if (xInput < -0.1f)
+			if (xInput < -0.1f || playerState == PlayerState.MovingLeft || playerState == PlayerState.IdleLeft)
 			{
 				playerState = PlayerState.JumpingLeft;
 			}
