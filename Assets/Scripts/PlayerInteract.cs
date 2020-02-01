@@ -39,33 +39,6 @@ public class PlayerInteract : MonoBehaviour
 		m_CurrentInteractable = GetHitInteractable();
 
 		ProcessInput();
-
-		if (m_PrevInteractable != m_CurrentInteractable)
-		{
-			m_PrevInteractable?.StopInteract();
-			if (m_CurrentInteractType != EInteractType.None)
-			{
-				m_CurrentInteractable?.StartInteract(m_CurrentInteractType);
-			}
-			m_PrevInteractable = m_CurrentInteractable;
-		}
-
-		if (m_CurrentInteractable != null)
-		{
-			if (m_CurrentInteractType == EInteractType.Destruct)
-			{
-				m_PlayerResources.AddResource(m_CurrentInteractable.ResourceType, m_CurrentInteractable.ResourceValue);
-			}
-			else if (m_CurrentInteractType == EInteractType.Repair)
-			{
-				m_PlayerResources.UseResource(m_CurrentInteractable.ResourceType, Time.deltaTime * m_CurrentInteractable.ResourceValue);
-
-				if (m_PlayerResources.resources[(int)m_CurrentInteractable.ResourceType].Count <= 0f)
-				{
-					m_CurrentInteractable.StopRepair();
-				}
-			}
-		}
 	}
 
 	private void ProcessInput()
@@ -74,31 +47,10 @@ public class PlayerInteract : MonoBehaviour
 		if (Input.GetMouseButtonDown(0))
 		{
 			m_CurrentInteractType = EInteractType.Destruct;
-			if (m_CurrentInteractable != null)
+			if (m_CurrentInteractable != null && m_CurrentInteractable.InteractState == EInteractType.Repair)
 			{
+				m_PlayerResources.AddResource(m_CurrentInteractable.ResourceType, m_CurrentInteractable.ResourceValue);
 				m_CurrentInteractable.StartDestruct();
-			}
-		}
-
-		if (Input.GetMouseButtonUp(0))
-		{
-			if (m_CurrentInteractType == EInteractType.Destruct)
-			{
-				if (Input.GetMouseButton(1))
-				{
-					m_CurrentInteractType = EInteractType.Repair;
-				}
-				else
-				{
-					m_CurrentInteractType = EInteractType.None;
-				}
-			}
-
-			Interactable interactable = GetHitInteractable();
-			if (interactable != null)
-			{
-				interactable.StopInteract();
-				m_CurrentInteractable = null;
 			}
 		}
 
@@ -107,31 +59,10 @@ public class PlayerInteract : MonoBehaviour
 		{
 			m_CurrentInteractType = EInteractType.Repair;
 
-			if (m_CurrentInteractable != null)
+			if (m_CurrentInteractable != null && m_CurrentInteractable.InteractState == EInteractType.Destruct)
 			{
+				m_PlayerResources.UseResource(m_CurrentInteractable.ResourceType, m_CurrentInteractable.ResourceValue);
 				m_CurrentInteractable.StartRepair();
-			}
-		}
-
-		if (Input.GetMouseButtonUp(1))
-		{
-			if (m_CurrentInteractType == EInteractType.Repair)
-			{
-				if (Input.GetMouseButton(0))
-				{
-					m_CurrentInteractType = EInteractType.Destruct;
-				}
-				else
-				{
-					m_CurrentInteractType = EInteractType.None;
-				}
-			}
-
-			Interactable interactable = GetHitInteractable();
-			if (interactable != null)
-			{
-				interactable.StopInteract();
-				m_CurrentInteractable = null;
 			}
 		}
 	}

@@ -9,20 +9,18 @@ public class Interactable : MonoBehaviour
 	private EResourceType m_ResourceType;
 	[SerializeField]
 	private float m_ResourceValue = 1f;
-	
-	[SerializeField]
-	private EInteractType m_StartState = EInteractType.Destruct;
 
 	[SerializeField]
-	private EInteractType m_InteractType = EInteractType.None;
+	private EInteractType m_InteractState = EInteractType.Repair;
 
 	private Animator m_Animator;
 	private int m_DestructId;
 	private int m_SpeedId;
 	private float m_NormalizedAnimTime;
-	
+
 	public EResourceType ResourceType { get { return m_ResourceType; } }
 	public float ResourceValue { get { return m_ResourceValue; } }
+	public EInteractType InteractState { get { return m_InteractState; } }
 
 	void Start()
 	{
@@ -30,11 +28,11 @@ public class Interactable : MonoBehaviour
 		m_SpeedId = Animator.StringToHash("Speed");
 
 		m_Animator.enabled = true;
-		if (m_StartState == EInteractType.Destruct)
+		if (m_InteractState == EInteractType.Destruct)
 		{
 			m_Animator.Play(0, 0, 1f);
 		}
-		else if (m_StartState == EInteractType.Repair)
+		else if (m_InteractState == EInteractType.Repair)
 		{
 			m_Animator.Play(0, 0, 0f);
 		}
@@ -43,89 +41,56 @@ public class Interactable : MonoBehaviour
 
 	void Update()
 	{
-		if (m_InteractType == EInteractType.Destruct)
-		{
-			if (m_Animator.GetAnimatorTransitionInfo(0).normalizedTime >= 1f)
-			{
-				m_InteractType = EInteractType.None;
-				m_Animator.enabled = false;
-			}
-		}
-		else if (m_InteractType == EInteractType.Repair)
-		{
-			if (m_Animator.GetAnimatorTransitionInfo(0).normalizedTime <= 0f)
-			{
-				m_InteractType = EInteractType.None;
-				m_Animator.enabled = false;
-			}
-		}
+
 	}
 
-	private IEnumerator _DisableAnimator()
-	{
-		yield return null;
-		m_Animator.enabled = false;
-	}
+private IEnumerator _DisableAnimator()
+{
+	yield return null;
+	m_Animator.enabled = false;
+}
 
-	public void StartDestruct()
+public void StartDestruct()
+{
+	m_InteractState = EInteractType.Destruct;
+	m_Animator.enabled = true;
+	SetSpeed(1f);
+}
+
+public void StartRepair()
+{
+	m_InteractState = EInteractType.Repair;
+	m_Animator.enabled = true;
+	SetSpeed(-1f);
+}
+
+public void StartInteract(EInteractType interactType)
+{
+	m_InteractState = interactType;
+	m_Animator.enabled = true;
+
+	if (interactType == EInteractType.Destruct)
 	{
-		m_InteractType = EInteractType.Destruct;
-		m_Animator.enabled = true;
 		SetSpeed(1f);
 	}
-
-	public void StopDestruct()
+	else if (interactType == EInteractType.Repair)
 	{
-		m_InteractType = EInteractType.None;
-		m_Animator.enabled = false;
-	}
-
-	public void StartRepair()
-	{
-		m_InteractType = EInteractType.Repair;
-		m_Animator.enabled = true;
 		SetSpeed(-1f);
 	}
+}
 
-	public void StopRepair()
+private void SetSpeed(float speed)
+{
+	//Cap the time between 0 and 1
+	if (m_Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f)
 	{
-		m_InteractType = EInteractType.None;
-		m_Animator.enabled = false;
+		m_Animator.Play(0, 0, 1f);
+	}
+	else if (m_Animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0f)
+	{
+		m_Animator.Play(0, 0, 0f);
 	}
 
-	public void StopInteract()
-	{
-		m_InteractType = EInteractType.None;
-		m_Animator.enabled = false;
-	}
-
-	public void StartInteract(EInteractType interactType)
-	{
-		m_InteractType = interactType;
-		m_Animator.enabled = true;
-
-		if (interactType == EInteractType.Destruct)
-		{
-			SetSpeed(1f);
-		}
-		else if (interactType == EInteractType.Repair)
-		{
-			SetSpeed(-1f);
-		}
-	}
-
-	private void SetSpeed(float speed)
-	{
-		//Cap the time between 0 and 1
-		if (m_Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f)
-		{
-			m_Animator.Play(0, 0, 1f);
-		}
-		else if (m_Animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0f)
-		{
-			m_Animator.Play(0, 0, 0f);
-		}
-
-		m_Animator.SetFloat(m_SpeedId, speed);
-	}
+	m_Animator.SetFloat(m_SpeedId, speed);
+}
 }
