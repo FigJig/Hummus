@@ -8,6 +8,11 @@ public class GameManager : MonoBehaviour
 
 	public GameObject[] blockers;
 
+	//DAD799
+	//CE81EC
+	public Color repairColor;
+	public Color destructColor;
+
 	private void Start()
 	{
 		if (Inst == null)
