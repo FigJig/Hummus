@@ -1,18 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Credits : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public GameObject creditsCanvas;
+	private Animator _creditsAnimator;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	private void Start()
+	{
+		_creditsAnimator = creditsCanvas.GetComponent<Animator>();
+	}
+
+	public void StartCredits()
+	{
+		StartCoroutine(CreditsRoutine());
+	}
+
+	IEnumerator CreditsRoutine()
+	{
+		creditsCanvas.SetActive(true);
+		_creditsAnimator.Play("AN_Credits");
+
+		yield return new WaitForSeconds(25f);
+
+		SceneManager.LoadScene("SC_MainMenu");
+	}
 }
