@@ -41,7 +41,7 @@ public class PlayerResources : MonoBehaviour
 				{
 					m_Count = value;
 				}
-				countText.text = ((int)(m_Count + 0.99f)).ToString();
+				countText.text = m_Count.ToString();
 			}
 		}
 	}
@@ -60,30 +60,30 @@ public class PlayerResources : MonoBehaviour
 	{
 		resources[(int)resourceType].Count += amount;
 
-		if (resourceType == EResourceType.Wood)
-		{
-			UIManager.Inst?.UpdatePlantAmount((int)resources[(int)resourceType].Count);
-		}
+		//if (resourceType == EResourceType.Wood)
+		//{
+		//	UIManager.Inst?.UpdatePlantAmount((int)resources[(int)resourceType].Count);
+		//}
 
-		if (resourceType == EResourceType.Stone)
-		{
-			UIManager.Inst?.UpdateMineralAmount((int)resources[(int)resourceType].Count);
-		}
+		//if (resourceType == EResourceType.Stone)
+		//{
+		//	UIManager.Inst?.UpdateMineralAmount((int)resources[(int)resourceType].Count);
+		//}
 	}
 
 	public void UseResource(EResourceType resourceType, int amount)
 	{
 		resources[(int)resourceType].Count -= amount;
 
-		if (resourceType == EResourceType.Wood)
-		{
-			UIManager.Inst?.UpdateMineralAmount((int)resources[(int)resourceType].Count);
-		}
+		//if (resourceType == EResourceType.Wood)
+		//{
+		//	UIManager.Inst?.UpdateMineralAmount((int)resources[(int)resourceType].Count);
+		//}
 
-		if (resourceType == EResourceType.Stone)
-		{
-			UIManager.Inst?.UpdateMineralAmount((int)resources[(int)resourceType].Count);
-		}
+		//if (resourceType == EResourceType.Stone)
+		//{
+		//	UIManager.Inst?.UpdateMineralAmount((int)resources[(int)resourceType].Count);
+		//}
 	}
 
 	public float GetResourceCount(EResourceType resourceType)

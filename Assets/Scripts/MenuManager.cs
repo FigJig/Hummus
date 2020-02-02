@@ -22,9 +22,9 @@ public class MenuManager : MonoBehaviour
 	{
 		SceneManager.LoadScene(scenesToLoad[0], LoadSceneMode.Single);
 
-		for (int i = 1; i < scenesToLoad.Length; i++)
-		{
-			SceneManager.LoadScene(scenesToLoad[i], LoadSceneMode.Additive);
-		}
+		//for (int i = 1; i < scenesToLoad.Length; i++)
+		//{
+		//	SceneManager.LoadScene(scenesToLoad[i], LoadSceneMode.Additive);
+		//}
 	}
 }

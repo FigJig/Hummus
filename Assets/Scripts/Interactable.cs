@@ -91,4 +91,9 @@ public class Interactable : MonoBehaviour
 			m_MeshRenderer?.material?.SetInt("_OutlineSwitch", 0);
 		}
 	}
+
+	public void SetState(EInteractableType state)
+	{
+		m_InteractableType = state;
+	}
 }

@@ -38,6 +38,7 @@ public class MoveToTimed : MonoBehaviour
 			else
 			{
 				transform.position = Vector3.Lerp(m_StartPos.position, m_EndPos.position, m_CurrentTime / m_MoveTime);
+				GetComponent<Interactable>().SetState(EInteractableType.Repairable);
 			}
 		}
 		else if (m_MoveState == EMoveState.ToStart)
@@ -53,6 +54,7 @@ public class MoveToTimed : MonoBehaviour
 			else
 			{
 				transform.position = Vector3.Lerp(m_EndPos.position, m_StartPos.position, m_CurrentTime / m_MoveTime);
+				GetComponent<Interactable>().SetState(EInteractableType.Destructable);
 			}
 		}
 	}
