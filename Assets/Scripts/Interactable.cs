@@ -51,13 +51,13 @@ public class Interactable : MonoBehaviour
 
 	public void StartDestruct()
 	{
-		m_InteractableType = EInteractableType.Destructable;
+		m_InteractableType = EInteractableType.Repairable;
 		OnDestruct.Invoke();
 	}
 
 	public void StartRepair()
 	{
-		m_InteractableType = EInteractableType.Repairable;
+		m_InteractableType = EInteractableType.Destructable;
 		OnRepair.Invoke();
 	}
 

@@ -62,12 +62,12 @@ public class PlayerResources : MonoBehaviour
 
 		if (resourceType == EResourceType.Wood)
 		{
-			UIManager.Inst.UpdatePlantAmount((int)resources[(int)resourceType].Count);
+			UIManager.Inst?.UpdatePlantAmount((int)resources[(int)resourceType].Count);
 		}
 
 		if (resourceType == EResourceType.Stone)
 		{
-			UIManager.Inst.UpdatePlantAmount((int)resources[(int)resourceType].Count);
+			UIManager.Inst?.UpdateMineralAmount((int)resources[(int)resourceType].Count);
 		}
 	}
 
@@ -77,12 +77,12 @@ public class PlayerResources : MonoBehaviour
 
 		if (resourceType == EResourceType.Wood)
 		{
-			UIManager.Inst.UpdateMineralAmount((int)resources[(int)resourceType].Count);
+			UIManager.Inst?.UpdateMineralAmount((int)resources[(int)resourceType].Count);
 		}
 
 		if (resourceType == EResourceType.Stone)
 		{
-			UIManager.Inst.UpdateMineralAmount((int)resources[(int)resourceType].Count);
+			UIManager.Inst?.UpdateMineralAmount((int)resources[(int)resourceType].Count);
 		}
 	}
 
