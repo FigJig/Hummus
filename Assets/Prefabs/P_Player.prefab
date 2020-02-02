@@ -1000,7 +1000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1.5
   acceleration: 0.15
-  jumpHeight: 4.2
+  jumpHeight: 4.25
   jumpClip: {fileID: 8300000, guid: e6e7dfe2ae427fd449aff6899c8cf751, type: 3}
   layerMaskForGrounded:
     serializedVersion: 2
