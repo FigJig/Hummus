@@ -59,11 +59,31 @@ public class PlayerResources : MonoBehaviour
 	public void AddResource(EResourceType resourceType, float amount)
 	{
 		resources[(int)resourceType].Count += amount;
+
+		if (resourceType == EResourceType.Wood)
+		{
+			UIManager.Inst.UpdatePlantAmount((int)resources[(int)resourceType].Count);
+		}
+
+		if (resourceType == EResourceType.Stone)
+		{
+			UIManager.Inst.UpdatePlantAmount((int)resources[(int)resourceType].Count);
+		}
 	}
 
 	public void UseResource(EResourceType resourceType, float amount)
 	{
 		resources[(int)resourceType].Count -= amount;
+
+		if (resourceType == EResourceType.Wood)
+		{
+			UIManager.Inst.UpdateMineralAmount((int)resources[(int)resourceType].Count);
+		}
+
+		if (resourceType == EResourceType.Stone)
+		{
+			UIManager.Inst.UpdateMineralAmount((int)resources[(int)resourceType].Count);
+		}
 	}
 
 	public float GetResourceCount(EResourceType resourceType)
