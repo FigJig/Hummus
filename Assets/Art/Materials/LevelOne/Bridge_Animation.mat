@@ -40,8 +40,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DissolveTexture:
-        m_Texture: {fileID: 2800000, guid: 11a32f16472d207479f2eeedf1d1b3f9, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: 369a159cf0d303f4b849383e1f4ff64f, type: 3}
+        m_Scale: {x: 8, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
@@ -98,7 +98,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DissolveClamp: 0
     - _DissolveDelay: -0.3
-    - _DissolveValue: 1
+    - _DissolveValue: 0
     - _DstBlend: 0
     - _Float0: 0.2
     - _GlossMapScale: 1
@@ -114,6 +114,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _UVRoundValue: 8
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
