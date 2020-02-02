@@ -66,7 +66,10 @@ public class Interactable : MonoBehaviour
 		Debug.Log("SelectInteract " + name);
 		OnSelect.Invoke();
 
-		m_MeshRenderer?.material?.SetInt("_OutlineSwitch", 1);
+		if (m_MeshRenderer != null)
+		{
+			m_MeshRenderer?.material?.SetInt("_OutlineSwitch", 1);
+		}
 
 		if (InteractableType == EInteractableType.Destructable)
 		{
@@ -83,6 +86,9 @@ public class Interactable : MonoBehaviour
 		Debug.Log("DeselectInteract " + name);
 		OnDeselect.Invoke();
 
-		m_MeshRenderer?.material?.SetInt("_OutlineSwitch", 0);
+		if (m_MeshRenderer != null)
+		{
+			m_MeshRenderer?.material?.SetInt("_OutlineSwitch", 0);
+		}
 	}
 }
