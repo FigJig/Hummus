@@ -10,9 +10,7 @@ Shader "Hummus/OutlinedSprite"
 		[PerRendererData] _AlphaTex ("External Alpha", 2D) = "white" {}
 		_OutlinedTexture("Outlined Texture", 2D) = "white" {}
 		_OutlineColor("Outline Color", Color) = (0,1,0.07855153,1)
-		[Toggle]_OutlineSwitch("OutlineSwitch", Float) = 1
-		_FlashSpeed("FlashSpeed", Float) = 0
-		_InteractiveColor("Interactive Color", Color) = (0.5019608,0.5019608,0.5019608,0.5019608)
+		[Toggle]_OutlineSwitch("OutlineSwitch", Float) = 0
 
 	}
 
@@ -68,8 +66,6 @@ Shader "Hummus/OutlinedSprite"
 			uniform sampler2D _OutlinedTexture;
 			uniform float4 _OutlinedTexture_ST;
 			uniform float4 _OutlineColor;
-			uniform float _FlashSpeed;
-			uniform float4 _InteractiveColor;
 			uniform float4 _OutlinedTexture_TexelSize;
 
 			
@@ -109,9 +105,10 @@ Shader "Hummus/OutlinedSprite"
 			{
 				float2 uv0_OutlinedTexture = IN.texcoord.xy * _OutlinedTexture_ST.xy + _OutlinedTexture_ST.zw;
 				float4 tex2DNode69 = tex2D( _OutlinedTexture, uv0_OutlinedTexture );
-				float mulTime124 = _Time.y * _FlashSpeed;
+				float mulTime124 = _Time.y * 4.0;
 				float4 lerpResult113 = lerp( float4( 0,0,0,0 ) , _OutlineColor , (0.8 + (sin( mulTime124 ) - -1.0) * (1.0 - 0.8) / (1.0 - -1.0)));
-				float4 lerpResult161 = lerp( tex2DNode69 , ( tex2DNode69.a * _InteractiveColor ) , _InteractiveColor.a);
+				float4 color162 = IsGammaSpace() ? float4(0.5019608,0.5019608,0.5019608,0.1254902) : float4(0.2158605,0.2158605,0.2158605,0.1254902);
+				float4 lerpResult161 = lerp( tex2DNode69 , ( tex2DNode69.a * color162 ) , color162.a);
 				float2 temp_output_32_0_g29 = uv0_OutlinedTexture;
 				float4 tex2DNode22_g29 = tex2D( _OutlinedTexture, temp_output_32_0_g29 );
 				float2 appendResult5_g29 = (float2(_OutlinedTexture_TexelSize.x , 0.0));
@@ -131,22 +128,22 @@ Shader "Hummus/OutlinedSprite"
 }
 /*ASEBEGIN
 Version=17700
-0;0;1920;1029;2852.186;467.9685;1.3;True;False
+0;64;1920;965;2751.165;244.5488;1;True;False
 Node;AmplifyShaderEditor.CommentaryNode;119;-2528,-48;Inherit;False;1649.841;576.4795;;13;165;69;158;161;164;163;162;146;157;68;65;166;167;Outline calculations;1,1,1,1;0;0
 Node;AmplifyShaderEditor.CommentaryNode;122;-2640,-544;Inherit;False;1083.8;439;;6;117;92;125;124;113;121;Outline color and flashing;1,1,1,1;0;0
-Node;AmplifyShaderEditor.TexturePropertyNode;65;-2496,0;Inherit;True;Property;_OutlinedTexture;Outlined Texture;2;0;Create;True;0;0;False;0;None;44882186cc6b7014aa91c820e12d9eca;False;white;Auto;Texture2D;-1;0;1;SAMPLER2D;0
-Node;AmplifyShaderEditor.RangedFloatNode;121;-2608,-288;Inherit;False;Property;_FlashSpeed;FlashSpeed;5;0;Create;True;0;0;False;0;0;8;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.TexturePropertyNode;65;-2496,0;Inherit;True;Property;_OutlinedTexture;Outlined Texture;2;0;Create;True;0;0;False;0;None;10f4d8c46b1b69c4d9e83879096ce49b;False;white;Auto;Texture2D;-1;0;1;SAMPLER2D;0
+Node;AmplifyShaderEditor.RangedFloatNode;121;-2608,-288;Inherit;False;Constant;_FlashSpeed;FlashSpeed;5;0;Create;True;0;0;False;0;4;6;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.WireNode;157;-1952,32;Inherit;False;1;0;SAMPLER2D;;False;1;SAMPLER2D;0
 Node;AmplifyShaderEditor.SimpleTimeNode;124;-2400,-288;Inherit;False;1;0;FLOAT;1;False;1;FLOAT;0
 Node;AmplifyShaderEditor.TextureCoordinatesNode;68;-2176,96;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.WireNode;146;-1904,48;Inherit;False;1;0;SAMPLER2D;;False;1;SAMPLER2D;0
-Node;AmplifyShaderEditor.SinOpNode;125;-2192,-288;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SamplerNode;69;-1840,112;Inherit;True;Property;_TextureSample1;Texture Sample 1;4;0;Create;True;0;0;False;0;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.ColorNode;162;-1776,320;Inherit;False;Property;_InteractiveColor;Interactive Color;6;0;Create;True;0;0;False;0;0.5019608,0.5019608,0.5019608,0.5019608;0.5019608,0.5019608,0.5019608,0.1254902;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.ColorNode;162;-1776,320;Inherit;False;Constant;_InteractiveColor;Interactive Color;5;0;Create;True;0;0;False;0;0.5019608,0.5019608,0.5019608,0.1254902;0.5019608,0.5019608,0.5019608,0.1254902;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SinOpNode;125;-2192,-288;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.TFHCRemapNode;117;-2032,-288;Inherit;False;5;0;FLOAT;0;False;1;FLOAT;-1;False;2;FLOAT;1;False;3;FLOAT;0.8;False;4;FLOAT;1;False;1;FLOAT;0
-Node;AmplifyShaderEditor.WireNode;163;-1792,48;Inherit;False;1;0;FLOAT2;0,0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.ColorNode;92;-2048,-496;Inherit;False;Property;_OutlineColor;Outline Color;3;0;Create;True;0;0;False;0;0,1,0.07855153,1;0.009142399,1,0,1;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;166;-1520,256;Inherit;False;2;2;0;FLOAT;0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.WireNode;163;-1792,48;Inherit;False;1;0;FLOAT2;0,0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.WireNode;167;-1392,400;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.LerpOp;113;-1728,-496;Inherit;False;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.WireNode;158;-1952,32;Inherit;False;1;0;SAMPLER2D;;False;1;SAMPLER2D;0
@@ -155,19 +152,19 @@ Node;AmplifyShaderEditor.WireNode;164;-1744,48;Inherit;False;1;0;FLOAT2;0,0;Fals
 Node;AmplifyShaderEditor.LerpOp;161;-1328,176;Inherit;False;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.WireNode;159;-576,144;Inherit;False;1;0;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.FunctionNode;165;-1168,0;Inherit;False;Outline2D;0;;29;c67b2c9f1f918d840b11b72b724b0848;0;4;2;SAMPLER2D;0;False;32;FLOAT2;0,0;False;25;COLOR;0,0,0,0;False;40;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.ToggleSwitchNode;112;-480,0;Inherit;False;Property;_OutlineSwitch;OutlineSwitch;4;0;Create;True;0;0;False;0;1;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.ToggleSwitchNode;112;-480,0;Inherit;False;Property;_OutlineSwitch;OutlineSwitch;4;0;Create;True;0;0;False;0;0;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;64;-176,0;Float;False;True;-1;2;ASEMaterialInspector;0;6;Hummus/OutlinedSprite;0f8ba0101102bb14ebf021ddadce9b49;True;SubShader 0 Pass 0;0;0;SubShader 0 Pass 0;2;True;3;1;False;-1;10;False;-1;0;1;False;-1;0;False;-1;False;False;True;2;False;-1;False;False;True;2;False;-1;False;False;True;5;Queue=Transparent=Queue=0;IgnoreProjector=True;RenderType=Transparent=RenderType;PreviewType=Plane;CanUseSpriteAtlas=True;False;0;False;False;False;False;False;False;False;False;False;False;True;2;0;;0;0;Standard;0;0;1;True;False;;0
 WireConnection;157;0;65;0
 WireConnection;124;0;121;0
 WireConnection;68;2;65;0
 WireConnection;146;0;157;0
-WireConnection;125;0;124;0
 WireConnection;69;0;146;0
 WireConnection;69;1;68;0
+WireConnection;125;0;124;0
 WireConnection;117;0;125;0
-WireConnection;163;0;68;0
 WireConnection;166;0;69;4
 WireConnection;166;1;162;0
+WireConnection;163;0;68;0
 WireConnection;167;0;162;4
 WireConnection;113;1;92;0
 WireConnection;113;2;117;0
@@ -186,4 +183,4 @@ WireConnection;112;0;159;0
 WireConnection;112;1;165;0
 WireConnection;64;0;112;0
 ASEEND*/
-//CHKSM=D1A553E0CD3B3E94E301AA338D17E6552EAD86A0
+//CHKSM=FCDFFD664662A242C8A477EF6C81147ECD26EFBB
