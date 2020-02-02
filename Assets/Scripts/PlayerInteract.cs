@@ -38,7 +38,11 @@ public class PlayerInteract : MonoBehaviour
 	{
 		m_CurrentInteractable = GetHitInteractable();
 
-		ProcessInput();
+		//If the player isn't jumping or falling, can interact
+		if (PlayerDataModule.Inst.playerMovement.IsGrounded)
+		{
+			ProcessInput();
+		}
 
 		if (m_PrevInteractable != m_CurrentInteractable)
 		{
@@ -77,16 +81,27 @@ public class PlayerInteract : MonoBehaviour
 	private void ProcessInput()
 	{
 		//Left
-		if (Input.GetMouseButtonDown(0))
+		if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Destruct"))
 		{
 			m_CurrentInteractType = EInteractType.Destruct;
+
+			if (PlayerDataModule.Inst.playerMovement.playerState == PlayerMovement.PlayerState.IdleLeft || PlayerDataModule.Inst.playerMovement.playerState == PlayerMovement.PlayerState.MovingLeft)
+			{
+				PlayerDataModule.Inst.playerMovement.playerState = PlayerMovement.PlayerState.DestructLeft;
+			}
+
+			if (PlayerDataModule.Inst.playerMovement.playerState == PlayerMovement.PlayerState.IdleRight || PlayerDataModule.Inst.playerMovement.playerState == PlayerMovement.PlayerState.MovingRight)
+			{
+				PlayerDataModule.Inst.playerMovement.playerState = PlayerMovement.PlayerState.DestructRight;
+			}
+
 			if (m_CurrentInteractable != null)
 			{
 				m_CurrentInteractable.StartDestruct();
 			}
 		}
 
-		if (Input.GetMouseButtonUp(0))
+		if (Input.GetMouseButtonUp(0) || Input.GetButtonUp("Destruct"))
 		{
 			if (m_CurrentInteractType == EInteractType.Destruct)
 			{
@@ -109,17 +124,27 @@ public class PlayerInteract : MonoBehaviour
 		}
 
 		//Right
-		if (Input.GetMouseButtonDown(1))
+		if (Input.GetMouseButtonDown(1) || Input.GetButtonDown("Repair"))
 		{
 			m_CurrentInteractType = EInteractType.Repair;
-			
+
+			if (PlayerDataModule.Inst.playerMovement.playerState == PlayerMovement.PlayerState.IdleLeft || PlayerDataModule.Inst.playerMovement.playerState == PlayerMovement.PlayerState.MovingLeft)
+			{
+				PlayerDataModule.Inst.playerMovement.playerState = PlayerMovement.PlayerState.RepairLeft;
+			}
+
+			if (PlayerDataModule.Inst.playerMovement.playerState == PlayerMovement.PlayerState.IdleRight || PlayerDataModule.Inst.playerMovement.playerState == PlayerMovement.PlayerState.MovingRight)
+			{
+				PlayerDataModule.Inst.playerMovement.playerState = PlayerMovement.PlayerState.RepairRight;
+			}
+
 			if (m_CurrentInteractable != null)
 			{
 				m_CurrentInteractable.StartRepair();
 			}
 		}
 
-		if (Input.GetMouseButtonUp(1))
+		if (Input.GetMouseButtonUp(1) || Input.GetButtonUp("Repair"))
 		{
 			if (m_CurrentInteractType == EInteractType.Repair)
 			{
