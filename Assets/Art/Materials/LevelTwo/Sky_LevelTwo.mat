@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sky_LevelOne
+  m_Name: Sky_LevelTwo
   m_Shader: {fileID: 4800000, guid: aa2c7f0598ba74c42b3ee267b556bc07, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA PIXELSNAP_ON
   m_LightmapFlags: 4
@@ -31,5 +31,5 @@ Material:
     - PixelSnap: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorFrom: {r: 0.19326274, g: 0.39073613, b: 0.9528302, a: 1}
-    - _ColorTo: {r: 0, g: 0.8249755, b: 1, a: 1}
+    - _ColorFrom: {r: 0.5566038, g: 0.3424612, b: 0.17065683, a: 1}
+    - _ColorTo: {r: 0.47058827, g: 0.23137257, b: 0.14509805, a: 1}
