@@ -42,6 +42,8 @@ public class PlayerInteract : MonoBehaviour
 
 		if (m_CurrentInteractable != m_PrevInteractable)
 		{
+			Debug.Log("Current " + m_CurrentInteractable?.name);
+			Debug.Log("Prev " + m_PrevInteractable?.name);
 			m_PrevInteractable?.DeselectInteract();
 			m_CurrentInteractable?.SelectInteract();
 			m_PrevInteractable = m_CurrentInteractable;
@@ -58,7 +60,7 @@ public class PlayerInteract : MonoBehaviour
 	private void ProcessInput()
 	{
 		//Left
-		if (Input.GetMouseButtonDown(0))
+		if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Destruct"))
 		{
 			if (DialogueManager.Instance.IsInDialogue)
 			{
@@ -86,12 +88,23 @@ public class PlayerInteract : MonoBehaviour
 						m_PlayerResources.AddResource(m_CurrentInteractable.ResourceType, m_CurrentInteractable.ResourceValue);
 						m_CurrentInteractable.StartDestruct();
 					}
+
+					if (PlayerDataModule.Inst.playerMovement.playerState == PlayerMovement.PlayerState.IdleLeft || PlayerDataModule.Inst.playerMovement.playerState == PlayerMovement.PlayerState.MovingLeft)
+					{
+						PlayerDataModule.Inst.playerMovement.playerState = PlayerMovement.PlayerState.DestructLeft;
+					}
+
+					if (PlayerDataModule.Inst.playerMovement.playerState == PlayerMovement.PlayerState.IdleRight || PlayerDataModule.Inst.playerMovement.playerState == PlayerMovement.PlayerState.MovingRight)
+					{
+						PlayerDataModule.Inst.playerMovement.playerState = PlayerMovement.PlayerState.DestructRight;
+					}
+
 				}
 			}
 		}
 
 		//Right
-		if (Input.GetMouseButtonDown(1))
+		if (Input.GetMouseButtonDown(1) || Input.GetButtonDown("Repair"))
 		{
 			m_CurrentInteractType = EInteractType.Repair;
 
@@ -100,6 +113,17 @@ public class PlayerInteract : MonoBehaviour
 				m_PlayerResources.UseResource(m_CurrentInteractable.ResourceType, m_CurrentInteractable.ResourceValue);
 				m_CurrentInteractable.StartRepair();
 			}
+
+			if (PlayerDataModule.Inst.playerMovement.playerState == PlayerMovement.PlayerState.IdleLeft || PlayerDataModule.Inst.playerMovement.playerState == PlayerMovement.PlayerState.MovingLeft)
+			{
+				PlayerDataModule.Inst.playerMovement.playerState = PlayerMovement.PlayerState.RepairLeft;
+			}
+
+			if (PlayerDataModule.Inst.playerMovement.playerState == PlayerMovement.PlayerState.IdleRight || PlayerDataModule.Inst.playerMovement.playerState == PlayerMovement.PlayerState.MovingRight)
+			{
+				PlayerDataModule.Inst.playerMovement.playerState = PlayerMovement.PlayerState.RepairRight;
+			}
+
 		}
 	}
 
