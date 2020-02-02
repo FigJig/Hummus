@@ -13,11 +13,13 @@ public class PlayerAnimator : MonoBehaviour
 
 	private Animator _animator;
 	private PlayerDataModule _player;
+	private AudioSource _audioSource;
 
 	private void Start()
 	{
 		_animator = GetComponent<Animator>();
 		_player = PlayerDataModule.Inst;
+		_audioSource = GetComponent<AudioSource>();
 	}
 
 	private void Update()
@@ -67,5 +69,10 @@ public class PlayerAnimator : MonoBehaviour
 				_animator.Play(jumpingRightAnim);
 				break;
 		}
+	}
+
+	public void PlaySound (AudioClip clip)
+	{
+		_audioSource.PlayOneShot(clip);
 	}
 }

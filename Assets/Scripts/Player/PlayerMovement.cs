@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
 	public float moveSpeed;
 	public float acceleration;
 	public float jumpHeight;
+	public AudioClip jumpClip;
 	public LayerMask layerMaskForGrounded;
 	public LayerMask layerMaskForPlatforms;[Header("Raycast Lengths")]
 	public float raycastUpLength;
@@ -37,14 +38,18 @@ public class PlayerMovement : MonoBehaviour
 			return 1;
 		}
 	}
+	private AudioSource _audioSource;
 	private float _isGroundedRayLength = 0.05f;
 	private float _xMovement;
 	private float _yVelocity;
 	private bool _isJumping;
 	private float _movementSpeed; private Rigidbody2D _rb;
 	private Vector2 _velocity;
-	public Collider2D collider; void Start()
+	public Collider2D collider;
+
+	void Start()
 	{
+		_audioSource = GetComponent<AudioSource>();
 		_rb = GetComponent<Rigidbody2D>();
 		_isJumping = false;
 	}
@@ -80,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
 			}
 			if (Input.GetButtonDown("Jump"))
 			{
+				_audioSource.PlayOneShot(jumpClip);
 				_yVelocity = jumpHeight;
 			}
 		}
