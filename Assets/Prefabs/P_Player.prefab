@@ -1006,7 +1006,12 @@ MonoBehaviour:
   layerMaskForPlatforms:
     serializedVersion: 2
     m_Bits: 2048
+  raycastUpLength: 0.003
+  raycastDownLength: 0.003
+  raycastUpPosOffset: 0
+  raycastDownPosOffset: -0.01
   playerState: 0
+  collider: {fileID: 1920049364}
 --- !u!95 &4974172237243114056
 Animator:
   serializedVersion: 3
