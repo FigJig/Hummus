@@ -31,5 +31,5 @@ Material:
     - PixelSnap: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorFrom: {r: 0, g: 0.15248537, b: 1, a: 1}
-    - _ColorTo: {r: 0, g: 0.8249755, b: 1, a: 1}
+    - _ColorFrom: {r: 0, g: 0.15248537, b: 1, a: 0.1254902}
+    - _ColorTo: {r: 0, g: 0.8249755, b: 1, a: 0.5019608}
