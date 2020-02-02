@@ -27,11 +27,33 @@ public class MoveToTimed : MonoBehaviour
 	{
 		if (m_MoveState == EMoveState.ToEnd)
 		{
-			transform.position = Vector3.Lerp(m_StartPos.position, m_EndPos.position, m_CurrentTime / m_MoveTime);
+			m_CurrentTime += Time.deltaTime;
+
+			if (m_CurrentTime >= m_MoveTime)
+			{
+				m_CurrentTime = 0f;
+				m_MoveState = EMoveState.AtEnd;
+				transform.position = m_EndPos.position;
+			}
+			else
+			{
+				transform.position = Vector3.Lerp(m_StartPos.position, m_EndPos.position, m_CurrentTime / m_MoveTime);
+			}
 		}
 		else if (m_MoveState == EMoveState.ToStart)
 		{
-			transform.position = Vector3.Lerp(m_EndPos.position, m_StartPos.position, m_CurrentTime / m_MoveTime);
+			m_CurrentTime += Time.deltaTime;
+
+			if (m_CurrentTime >= m_MoveTime)
+			{
+				m_CurrentTime = 0f;
+				m_MoveState = EMoveState.AtStart;
+				transform.position = m_StartPos.position;
+			}
+			else
+			{
+				transform.position = Vector3.Lerp(m_EndPos.position, m_StartPos.position, m_CurrentTime / m_MoveTime);
+			}
 		}
 	}
 
