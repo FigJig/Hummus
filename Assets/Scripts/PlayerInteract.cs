@@ -95,7 +95,7 @@ public class PlayerInteract : MonoBehaviour
 		{
 			m_CurrentInteractType = EInteractType.Repair;
 
-			if (m_CurrentInteractable != null && m_CurrentInteractable.InteractableType == EInteractableType.Repairable)
+			if (m_CurrentInteractable != null && m_CurrentInteractable.InteractableType == EInteractableType.Repairable && m_PlayerResources.resources[(int)m_CurrentInteractable.ResourceType].Count > 0)
 			{
 				m_PlayerResources.UseResource(m_CurrentInteractable.ResourceType, m_CurrentInteractable.ResourceValue);
 				m_CurrentInteractable.StartRepair();

@@ -19,8 +19,8 @@ public class PlayerResources : MonoBehaviour
 		public int max;
 
 		[SerializeField]
-		private float m_Count;
-		public float Count
+		private int m_Count;
+		public int Count
 		{
 			get
 			{
@@ -52,16 +52,16 @@ public class PlayerResources : MonoBehaviour
 	{
 		for (int i = 0; i < resources.Length; i++)
 		{
-			resources[i].countText.text = ((int)(resources[i].Count + 0.99f)).ToString();
+			resources[i].countText.text = (resources[i].Count).ToString();
 		}
 	}
 
-	public void AddResource(EResourceType resourceType, float amount)
+	public void AddResource(EResourceType resourceType, int amount)
 	{
 		resources[(int)resourceType].Count += amount;
 	}
 
-	public void UseResource(EResourceType resourceType, float amount)
+	public void UseResource(EResourceType resourceType, int amount)
 	{
 		resources[(int)resourceType].Count -= amount;
 	}
