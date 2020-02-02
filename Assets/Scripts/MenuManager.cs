@@ -7,7 +7,13 @@ public class MenuManager : MonoBehaviour
 {
 	public string[] scenesToLoad;
 
-   public void QuitGame()
+	private void Start()
+	{
+		Cursor.visible = true;
+		Cursor.lockState = CursorLockMode.None;
+	}
+
+	public void QuitGame()
 	{
 		Application.Quit();
 	}
