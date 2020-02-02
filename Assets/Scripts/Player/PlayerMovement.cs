@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
 	}
 	void FixedUpdate()
 	{
-		if (!UIManager.MenuIsActive && !DialogueManager.Instance.IsInDialogue)
+		if (!UIManager.MenuIsActive && !DialogueManager.Instance.IsInDialogue && !Credits.CreditsPlaying)
 		{
 			CalculateMovement();
 		}
