@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Credits : MonoBehaviour
 {
+	public static bool CreditsPlaying = false;
+
 	public GameObject creditsCanvas;
 	private Animator _creditsAnimator;
 
@@ -21,6 +23,7 @@ public class Credits : MonoBehaviour
 
 	IEnumerator CreditsRoutine()
 	{
+		CreditsPlaying = true;
 		creditsCanvas.SetActive(true);
 		_creditsAnimator.Play("AN_Credits");
 

@@ -1,0 +1,22 @@
+First NPC
+- Ah! You there, you're a mage right? Could you help me out? 
+- A friend of mine is stuck in the caves below - there are a bunch of obstacles so we can't get down to them
+- My other two friends are down there trying to figure some of the puzzles out... no luck yet though
+- Ah-? You'll do it? Thank you! Good luck 
+
+Second NPC
+- Hey~! You must be here to help us right? I'm suuuper stuck
+- I'm pretty sure those chickpeas are magic and do something good but.... I don't know...
+- Keep at it though, yeah? You can go it!
+
+Third NPC
+- .... What? You know what to do, right? Stop bothering me and keep working.
+- Oh you're only helping us get our friend? Huh... so thats what they said...
+
+
+BOSS NPC
+- Ah... you made it. With all the legendary chickpeas too... hehe.. heh.. 
+- Now.. finally.. the perfect hummus.. a hummus so smooth and rich.. true bliss.. heheh...
+- The sacrifice has been made... the cult is ready.. everything we've been waiting for...
+- You. You don't have to meet the same fate as that poor soul.. you can join us in delicious hummus
+- Give us the chickpeas... join us...

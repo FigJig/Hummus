@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -11,9 +12,9 @@ public class UIManager : MonoBehaviour
 	public static bool MenuIsActive;
 
 	public GameObject inGameMenu;
-	public TextMeshProUGUI chickpeaText;
-	public TextMeshProUGUI plantText;
-	public TextMeshProUGUI mineralText;
+	public Text chickpeaText;
+	public Text plantText;
+	public Text mineralText;
 	public TextMeshProUGUI summuhText;
 
 	private void Start()
