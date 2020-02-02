@@ -10,18 +10,25 @@ public class PlayerMovement : MonoBehaviour
 		MovingLeft,
 		MovingRight,
 		JumpingLeft,
-		JumpingRight
+		JumpingRight,
+		RepairLeft,
+		RepairRight,
+		DestructLeft,
+		DestructRight
 	}
 	public float moveSpeed;
 	public float acceleration;
 	public float jumpHeight;
 	public AudioClip jumpClip;
 	public LayerMask layerMaskForGrounded;
-	public LayerMask layerMaskForPlatforms;[Header("Raycast Lengths")]
+	public LayerMask layerMaskForPlatforms;
+	[Header("Raycast Lengths")]
 	public float raycastUpLength;
-	public float raycastDownLength;[Header("Raycast Positions")]
+	public float raycastDownLength;
+	[Header("Raycast Positions")]
 	public float raycastUpPosOffset;
-	public float raycastDownPosOffset; public PlayerState playerState;
+	public float raycastDownPosOffset;
+	public PlayerState playerState;
 	public int LookDirection
 	{
 		get

@@ -10,6 +10,10 @@ public class PlayerAnimator : MonoBehaviour
 	public string movingRightAnim;
 	public string jumpingLeftAnim;
 	public string jumpingRightAnim;
+	public string destructLeftAnim;
+	public string destructRightAnim;
+	public string repairLeftAnim;
+	public string repairRightAnim;
 
 	private Animator _animator;
 	private PlayerDataModule _player;
@@ -67,6 +71,34 @@ public class PlayerAnimator : MonoBehaviour
 					break;
 				}
 				_animator.Play(jumpingRightAnim);
+				break;
+			case PlayerMovement.PlayerState.RepairLeft:
+				if (_animator.GetCurrentAnimatorStateInfo(0).IsName(repairLeftAnim))
+				{
+					break;
+				}
+				_animator.Play(repairLeftAnim);
+				break;
+			case PlayerMovement.PlayerState.RepairRight:
+				if (_animator.GetCurrentAnimatorStateInfo(0).IsName(repairRightAnim))
+				{
+					break;
+				}
+				_animator.Play(repairRightAnim);
+				break;
+			case PlayerMovement.PlayerState.DestructLeft:
+				if (_animator.GetCurrentAnimatorStateInfo(0).IsName(destructLeftAnim))
+				{
+					break;
+				}
+				_animator.Play(destructLeftAnim);
+				break;
+			case PlayerMovement.PlayerState.DestructRight:
+				if (_animator.GetCurrentAnimatorStateInfo(0).IsName(destructRightAnim))
+				{
+					break;
+				}
+				_animator.Play(destructRightAnim);
 				break;
 		}
 	}

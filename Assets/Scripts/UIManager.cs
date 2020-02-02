@@ -37,6 +37,8 @@ public class UIManager : MonoBehaviour
 		{
 			inGameMenu.SetActive(!inGameMenu.activeInHierarchy);
 			MenuIsActive = inGameMenu.activeInHierarchy;
+			Cursor.visible = true;
+			Cursor.lockState = CursorLockMode.None;
 			return;
 		}
 
@@ -44,6 +46,8 @@ public class UIManager : MonoBehaviour
 		{
 			if (Input.GetButtonDown("Jump"))
 			{
+				Cursor.visible = false;
+				Cursor.lockState = CursorLockMode.Locked;
 				inGameMenu.SetActive(!inGameMenu.activeInHierarchy);
 				MenuIsActive = false;
 			}

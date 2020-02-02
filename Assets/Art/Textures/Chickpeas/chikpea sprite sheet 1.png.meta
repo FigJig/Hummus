@@ -1,31 +1,25 @@
 fileFormatVersion: 2
-guid: c9384c07841662d4784ba6952d2e8c22
+guid: bdcfd073b94402e43900517bad476232
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6694946144585748375
-    second: character jump-Sheet flipped_0
+      213: 8205945645583468947
+    second: chikpea sprite sheet 1_0
   - first:
-      213: -9072768998159319075
-    second: character jump-Sheet flipped_1
+      213: -4434500562607419476
+    second: chikpea sprite sheet 1_1
   - first:
-      213: -5440367603351177487
-    second: character jump-Sheet flipped_2
+      213: 1181290745033826759
+    second: chikpea sprite sheet 1_2
   - first:
-      213: 225959671894455616
-    second: character jump-Sheet flipped_3
+      213: -1025211807180891794
+    second: chikpea sprite sheet 1_3
   - first:
-      213: 8111475976740589006
-    second: character jump-Sheet flipped_4
+      213: 3123178104278844597
+    second: chikpea sprite sheet 1_4
   - first:
-      213: -711323506294215809
-    second: character jump-Sheet flipped_5
-  - first:
-      213: -3989015719943979579
-    second: character jump-Sheet flipped_6
-  - first:
-      213: -76926116565726047
-    second: character jump-Sheet flipped_7
+      213: -6229905364123543556
+    second: chikpea sprite sheet 1_5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -84,7 +78,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -96,7 +90,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -108,7 +102,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 2048
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -122,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: character jump-Sheet flipped_0
+      name: chikpea sprite sheet 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -130,20 +124,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bfee29e36dca17948b8f5b110e7b7bca
-      internalID: 6694946144585748375
+      spriteID: dadc3aa9ebe060b428616b27fc175892
+      internalID: 8205945645583468947
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character jump-Sheet flipped_1
+      name: chikpea sprite sheet 1_1
       rect:
         serializedVersion: 2
         x: 32
@@ -151,41 +145,41 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c73b13595e5004d4399fff9b87d753cb
-      internalID: -9072768998159319075
+      spriteID: 8788f32da0107774bab2a9c984157a3b
+      internalID: -4434500562607419476
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character jump-Sheet flipped_2
+      name: chikpea sprite sheet 1_2
       rect:
         serializedVersion: 2
-        x: 70
+        x: 64
         y: 0
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98ed03273629e89439848ff5f777ab58
-      internalID: -5440367603351177487
+      spriteID: e1f72d7c451068f45abc41fcd2397543
+      internalID: 1181290745033826759
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character jump-Sheet flipped_3
+      name: chikpea sprite sheet 1_3
       rect:
         serializedVersion: 2
         x: 96
@@ -193,20 +187,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49b90e08410fb664bab185fd4bcb1691
-      internalID: 225959671894455616
+      spriteID: 60ee647ea225e444fad1cddda4d53dc9
+      internalID: -1025211807180891794
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character jump-Sheet flipped_4
+      name: chikpea sprite sheet 1_4
       rect:
         serializedVersion: 2
         x: 128
@@ -214,20 +208,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c2505a3a05d1fb41952577ec7749dab
-      internalID: 8111475976740589006
+      spriteID: 5375fa0bea1daca47b4145cd30120f6f
+      internalID: 3123178104278844597
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character jump-Sheet flipped_5
+      name: chikpea sprite sheet 1_5
       rect:
         serializedVersion: 2
         x: 160
@@ -235,56 +229,14 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3434e749ce841314ca1aa60be28f58f2
-      internalID: -711323506294215809
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: character jump-Sheet flipped_6
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 290d80be1c660ad4bbf546c79985e6a0
-      internalID: -3989015719943979579
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: character jump-Sheet flipped_7
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6b1180e998516b546a44948a4472ab6b
-      internalID: -76926116565726047
+      spriteID: 8d1c57257ff67cf42adfa962ea33a2a3
+      internalID: -6229905364123543556
       vertices: []
       indices: 
       edges: []
