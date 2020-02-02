@@ -10,6 +10,8 @@ public class DialogueInteractable : MonoBehaviour
 	private string[] m_DialogueStrings;
 	[SerializeField]
 	private Sprite m_CharacterSprite;
+	[SerializeField]
+	private bool m_IsBoss = false;
 
 	private bool m_IsShowing = false;
 	private int m_DialogueIndex = 0;
@@ -44,6 +46,10 @@ public class DialogueInteractable : MonoBehaviour
 	private void EndDialogue()
 	{
 		Debug.Log("End Dialogue");
+		if (m_IsBoss)
+		{
+			GetComponent<Credits>().StartCredits();
+		}
 		m_IsShowing = false;
 		DialogueManager.Instance.HideDialogue();
 		OnFinishDialogue();
