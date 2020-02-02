@@ -6,7 +6,7 @@ public enum EInteractType
 {
 	None,
 	Destruct,       //Left
-	Repair          //Right
+	Repair,          //Right
 }
 
 [RequireComponent(typeof(PlayerResources))]
@@ -28,6 +28,8 @@ public class PlayerInteract : MonoBehaviour
 	private Interactable m_CurrentInteractable;
 	private Interactable m_PrevInteractable;
 
+	private DialogueInteractable m_CurrentDialogue;
+
 	void Start()
 	{
 		m_PlayerResources = GetComponent<PlayerResources>();
@@ -38,7 +40,19 @@ public class PlayerInteract : MonoBehaviour
 	{
 		m_CurrentInteractable = GetHitInteractable();
 
+		if (m_CurrentInteractable != m_PrevInteractable)
+		{
+			m_PrevInteractable?.DeselectInteract();
+			m_CurrentInteractable?.SelectInteract();
+			m_PrevInteractable = m_CurrentInteractable;
+		}
+
 		ProcessInput();
+	}
+
+	private void EndDialogue()
+	{
+		m_CurrentDialogue = null;
 	}
 
 	private void ProcessInput()
@@ -46,11 +60,33 @@ public class PlayerInteract : MonoBehaviour
 		//Left
 		if (Input.GetMouseButtonDown(0))
 		{
-			m_CurrentInteractType = EInteractType.Destruct;
-			if (m_CurrentInteractable != null && m_CurrentInteractable.InteractState == EInteractType.Repair)
+			if (DialogueManager.Instance.IsInDialogue)
 			{
-				m_PlayerResources.AddResource(m_CurrentInteractable.ResourceType, m_CurrentInteractable.ResourceValue);
-				m_CurrentInteractable.StartDestruct();
+				m_CurrentDialogue.NextDialogue();
+			}
+			else if (m_CurrentInteractable != null)
+			{
+				if (m_CurrentInteractable.InteractableType == EInteractableType.Dialogue)
+				{
+					m_CurrentDialogue = m_CurrentInteractable.GetComponent<DialogueInteractable>();
+					if (m_CurrentDialogue == null)
+					{
+						Debug.LogError("No DialogueInteractable component found");
+					}
+					else
+					{
+						m_CurrentDialogue.StartDialogue(EndDialogue);
+					}
+				}
+				else
+				{
+					m_CurrentInteractType = EInteractType.Destruct;
+					if (m_CurrentInteractable.InteractableType == EInteractableType.Destructable)
+					{
+						m_PlayerResources.AddResource(m_CurrentInteractable.ResourceType, m_CurrentInteractable.ResourceValue);
+						m_CurrentInteractable.StartDestruct();
+					}
+				}
 			}
 		}
 
@@ -59,7 +95,7 @@ public class PlayerInteract : MonoBehaviour
 		{
 			m_CurrentInteractType = EInteractType.Repair;
 
-			if (m_CurrentInteractable != null && m_CurrentInteractable.InteractState == EInteractType.Destruct)
+			if (m_CurrentInteractable != null && m_CurrentInteractable.InteractableType == EInteractableType.Repairable)
 			{
 				m_PlayerResources.UseResource(m_CurrentInteractable.ResourceType, m_CurrentInteractable.ResourceValue);
 				m_CurrentInteractable.StartRepair();
@@ -72,6 +108,7 @@ public class PlayerInteract : MonoBehaviour
 		RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(PlayerDataModule.Inst.playerMovement.LookDirection, 0), m_InteractRange, m_AllMask);
 		if (hit.collider != null)
 		{
+			//Debug.Log("Hit " + hit.collider.name);
 			int temp = (hit.collider.gameObject.layer | (1 << m_InteractMask));
 			if (hit.collider.gameObject.layer == temp)
 			{
@@ -80,12 +117,5 @@ public class PlayerInteract : MonoBehaviour
 		}
 
 		return null;
-	}
-
-	void OnDrawGizmos()
-	{
-		Gizmos.color = Color.blue;
-		Vector3 lineEnd = transform.position + new Vector3(m_InteractRange, 0f, 0f);
-		Gizmos.DrawLine(transform.position, lineEnd);
 	}
 }

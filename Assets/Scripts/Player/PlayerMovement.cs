@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
 	}
 	void FixedUpdate()
 	{
-		if (!UIManager.MenuIsActive)
+		if (!UIManager.MenuIsActive && !DialogueManager.Instance.IsInDialogue)
 		{
 			CalculateMovement();
 		}
