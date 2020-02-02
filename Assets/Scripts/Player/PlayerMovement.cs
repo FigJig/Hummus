@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
 	}
 	void FixedUpdate()
 	{
-		if (!UIManager.MenuIsActive)
+		if (!UIManager.MenuIsActive || !Credits.CreditsPlaying)
 		{
 			CalculateMovement();
 		}
