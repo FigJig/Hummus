@@ -54,12 +54,26 @@ public class PlayerMovement : MonoBehaviour
 	private Vector2 _velocity;
 	public Collider2D collider;
 
+	private bool _doJump = false;
+
 	void Start()
 	{
 		_audioSource = GetComponent<AudioSource>();
 		_rb = GetComponent<Rigidbody2D>();
 		_isJumping = false;
 	}
+
+	private void Update()
+	{
+		if (!UIManager.MenuIsActive && !DialogueManager.Instance.IsInDialogue && !Credits.CreditsPlaying)
+		{
+			if (IsGrounded && Input.GetButtonDown("Jump"))
+			{
+				_doJump = true;
+			}
+		}
+	}
+
 	void FixedUpdate()
 	{
 		if (!UIManager.MenuIsActive && !DialogueManager.Instance.IsInDialogue && !Credits.CreditsPlaying)
@@ -69,12 +83,11 @@ public class PlayerMovement : MonoBehaviour
 	}
 	void CalculateMovement()
 	{
-		float xInput = Input.GetAxisRaw("Horizontal"); if (JumpingAbovePlatform)
-		{
-			Debug.Log("jumping above platform");
-		}
+		float xInput = Input.GetAxisRaw("Horizontal");
 		Vector2 movementHoritzontal = Vector2.right * xInput;
-		_velocity = Vector2.zero; if (xInput != 0)
+		_velocity = Vector2.zero;
+
+		if (xInput != 0)
 		{
 			_movementSpeed = Mathf.MoveTowards(_movementSpeed, moveSpeed, acceleration);
 			_velocity = movementHoritzontal.normalized * _movementSpeed;
@@ -90,20 +103,24 @@ public class PlayerMovement : MonoBehaviour
 			{
 				_yVelocity = 0;
 			}
-			if (Input.GetButtonDown("Jump"))
+			if (_doJump)
 			{
 				_audioSource.PlayOneShot(jumpClip);
 				_yVelocity = jumpHeight;
 			}
+
+			_doJump = false;
 		}
 		else
 		{
 			_yVelocity -= 9.8f * Time.fixedDeltaTime;
 		}
-		DetermineState(xInput, IsGrounded);
+
 		_velocity.y = _yVelocity;
+		DetermineState(xInput, IsGrounded);
 		_rb.MovePosition(_rb.position + _velocity * Time.fixedDeltaTime);
 	}
+
 	void DetermineState(float xInput, bool isGrounded)
 	{
 		if (!isGrounded)
